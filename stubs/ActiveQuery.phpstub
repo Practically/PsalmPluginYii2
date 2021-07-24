@@ -15,7 +15,7 @@ namespace yii\db;
  *
  * @property bool $asArray
  *
- * @method TModel one()
+ * @method TModel|null one()
  * @method array<mixed, TModel> all()
  *
  * @extends Query<TModel>

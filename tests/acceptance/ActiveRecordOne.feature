@@ -37,6 +37,10 @@ Feature: ActiveRecord->one();
     Given I have the following code
       """
       $user = User::find()->one();
+	  if ($user === null) {
+	  	 throw new \Exception('Not found');
+	  }
+
       $user->getName();
       """
     When I run Psalm
@@ -45,18 +49,27 @@ Feature: ActiveRecord->one();
     Given I have the following code
       """
       $user = User::find()->one();
+	  if ($user === null) {
+	  	 throw new \Exception('Not found');
+	  }
+
       $user->getNotMyName();
       """
     When I run Psalm
     Then I see these errors
-      | Type                 | Message                                                                                |
+      | Type                 | Message                                                                                 |
       | UndefinedMagicMethod | Magic method Practically\PsalmPluginYii2\Tests\Models\User::getnotmyname does not exist |
     And I see no other errors
 
   Scenario: You can return an array when calling `asArray()`
     Given I have the following code
       """
-      $user = (array)User::find()->asArray()->one();
+	  /** @var array<string, mixed>|null */
+      $user = User::find()->asArray()->one();
+	  if ($user === null) {
+	  	 throw new \Exception('Not found');
+	  }
+
       array_pop($user);
       """
     When I run Psalm
