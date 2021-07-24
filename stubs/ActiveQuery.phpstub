@@ -1,0 +1,23 @@
+<?php
+/**
+ * Copyright 2021 Practically.io All rights reserved
+ *
+ * Use of this source is governed by a BSD-style
+ * licence that can be found in the LICENCE file or at
+ * https://www.practically.io/copyright/
+ */
+declare(strict_types=1);
+
+namespace yii\db;
+
+/**
+ * @psalm-template TModel
+ *
+ * @property bool $asArray
+ *
+ * @method TModel one()
+ * @method array<mixed, TModel> all()
+ *
+ * @extends Query<TModel>
+ */
+class ActiveQuery extends Query {}

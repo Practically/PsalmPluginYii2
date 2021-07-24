@@ -1,0 +1,19 @@
+# Copyright 2021 Practically.io All rights reserved
+#
+#  Use of this source is governed by a BSD-style
+#  licence that can be found in the LICENCE file or at
+#  https://www.practically.io/copyright/
+#
+# Codeception Test Suite Configuration
+#
+# Suite for acceptance tests.
+# Perform tests in browser using the WebDriver or PhpBrowser.
+# If you need both WebDriver and PHPBrowser tests - create a separate suite.
+
+actor: AcceptanceTester
+modules:
+  enabled:
+    - Cli
+    - Filesystem
+    - \Weirdan\Codeception\Psalm\Module
+    - \Practically\PsalmPluginYii2\Tests\Helper\Acceptance

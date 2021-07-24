@@ -1,0 +1,53 @@
+{
+    "name": "practically/psalm-plugin-yii2",
+    "description": "Psalm plugin for a better typed yii2 application",
+    "type": "psalm-plugin",
+    "authors": [
+        {
+            "name": "Ade Attwood",
+            "email": "ade@practically.io"
+        }
+    ],
+    "require": {
+        "php": ">=7.1",
+        "vimeo/psalm": "^4.8",
+        "yiisoft/yii2": "^2.0"
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "^3.6",
+        "weirdan/codeception-psalm-module": "^0.13.1",
+        "codeception/codeception": "^4.1"
+    },
+    "extra": {
+        "psalm": {
+            "pluginClass": "Practically\\PsalmPluginYii2\\Plugin"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Practically\\PsalmPluginYii2\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Practically\\PsalmPluginYii2\\Tests\\": [
+                "tests/_support",
+                "tests"
+            ]
+        }
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://asset-packagist.org"
+        }
+    ],
+    "scripts": {
+        "test": "codecept build && codecept run",
+        "psalm": "psalm",
+        "cs:check": "phpcs --standard=./ruleset.xml --ignore='tests/_run' -s src tests",
+        "cs:check-errors": "phpcs --standard=./ruleset.xml --warning-severity=10 --ignore='tests/_run' -s src tests",
+        "cs:fix": "phpcbf --standard=./ruleset.xml --ignore='tests/_run' -s src tests",
+		"pre-commit": ["@test", "@psalm", "@cs:check-errors"]
+    }
+}

@@ -1,0 +1,17 @@
+# Copyright 2021 Practically.io All rights reserved
+#
+#  Use of this source is governed by a BSD-style
+#  licence that can be found in the LICENCE file or at
+#  https://www.practically.io/copyright/
+
+namespace: Practically\PsalmPluginYii2\Tests
+paths:
+  tests: tests
+  output: tests/_output
+  data: tests/_data
+  support: tests/_support
+  envs: tests/_envs
+actor_suffix: Tester
+extensions:
+  enabled:
+    - Codeception\Extension\RunFailed
