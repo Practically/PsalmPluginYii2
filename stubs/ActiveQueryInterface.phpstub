@@ -11,9 +11,11 @@ declare(strict_types=1);
 namespace yii\db;
 
 /**
- * @template TModel
- * @method iterable<mixed, TModel> each(int $batchSize = 100, ?Connection $db = null)
+ * @psalm-template TModel
+ *
  * @method TModel|null one()
  * @method array<mixed, TModel> all()
+ *
+ * @extends QueryInterface<TModel>
  */
-class Query {}
+class ActiveQueryInterface extends QueryInterface {}

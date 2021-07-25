@@ -10,10 +10,15 @@ declare(strict_types=1);
 
 namespace yii\db;
 
-/**
- * @template TModel
- * @method iterable<mixed, TModel> each(int $batchSize = 100, ?Connection $db = null)
- * @method TModel|null one()
- * @method array<mixed, TModel> all()
- */
-class Query {}
+class BaseActiveRecord
+{
+    /**
+     * @template T
+     *
+     * @param class-string<T> $class
+     * @param array $link
+     *
+     * @return ActiveQuery<T>
+     */
+    public function hasOne($class, $link): ActiveQueryInterface {}
+}

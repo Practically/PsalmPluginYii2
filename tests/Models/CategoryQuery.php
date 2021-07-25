@@ -8,12 +8,19 @@
  */
 declare(strict_types=1);
 
-namespace yii\db;
+namespace Practically\PsalmPluginYii2\Tests\Models;
+
+use yii\db\ActiveQuery;
 
 /**
- * @template TModel
- * @method iterable<mixed, TModel> each(int $batchSize = 100, ?Connection $db = null)
- * @method TModel|null one()
- * @method array<mixed, TModel> all()
+ * A test class that will mock a blog post category
  */
-class Query {}
+class CategoryQuery extends ActiveQuery
+{
+
+    public function active(): self
+    {
+        return $this;
+    }
+
+}
