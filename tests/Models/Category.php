@@ -29,7 +29,7 @@ class Category extends ActiveRecord
     /**
      * A test method to get the category name
      */
-    public function getDisplyName(): string
+    public function getDisplayName(): string
     {
         return 'The category';
     }
