@@ -13,4 +13,4 @@ namespace yii\db;
 /**
  * @method ActiveQuery<static> find();
  */
-class ActiveRecord {}
+class ActiveRecord extends BaseActiveRecord {}
