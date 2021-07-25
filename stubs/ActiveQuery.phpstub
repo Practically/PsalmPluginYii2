@@ -20,4 +20,20 @@ namespace yii\db;
  *
  * @extends Query<TModel>
  */
-class ActiveQuery extends Query {}
+class ActiveQuery extends Query
+{
+    /**
+     * @var string|null
+     */
+    public $sql;
+
+    /**
+     * @var string|array|null
+     */
+    public $on;
+
+    /**
+     * @var array|null
+     */
+    public $joinWith;
+}

@@ -13,4 +13,21 @@ namespace yii\db;
 /**
  * @method ActiveQuery<static> find();
  */
-class ActiveRecord extends BaseActiveRecord {}
+class ActiveRecord extends BaseActiveRecord
+{
+    /**
+     * @param array $attributes
+     * @param string|array $condition
+     * @param array $params
+     *
+     * @return int
+     */
+    public static function updateAll($attributes, $condition = '', $params = []) {}
+
+    /**
+     * @param ActiveRecordInterface $record
+     *
+     * @return bool
+     */
+    public function equals($record) {}
+}
