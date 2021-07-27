@@ -22,7 +22,7 @@ class User extends ActiveRecord
     /**
      * Gets the users name. This is used for testing that the instance of user
      * can be inferred. When calling `$user->getName()` psalm will fail if it
-     * dose not know the `$user` is an instance of `User`
+     * does not know the `$user` is an instance of `User`
      */
     public function getName(): string
     {

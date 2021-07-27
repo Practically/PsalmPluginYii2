@@ -79,8 +79,8 @@ class BaseObjectPropertyAccessor implements PropertyExistenceProviderInterface, 
         }
 
         $property_name = $event->getPropertyName();
-        if (self::doseGetterExist($codebase, $fq_classlike_name, $property_name)
-         || self::doseSetterExist($codebase, $fq_classlike_name, $property_name)
+        if (self::doesGetterExist($codebase, $fq_classlike_name, $property_name)
+         || self::doesSetterExist($codebase, $fq_classlike_name, $property_name)
         ) {
             return true;
         }
@@ -106,8 +106,8 @@ class BaseObjectPropertyAccessor implements PropertyExistenceProviderInterface, 
         }
 
         $property_name = $event->getPropertyName();
-        $setter_exists = self::doseSetterExist($codebase, $fq_classlike_name, $property_name);
-        $getter_exists = self::doseGetterExist($codebase, $fq_classlike_name, $property_name);
+        $setter_exists = self::doesSetterExist($codebase, $fq_classlike_name, $property_name);
+        $getter_exists = self::doesGetterExist($codebase, $fq_classlike_name, $property_name);
         if ($setter_exists || $getter_exists) {
             return true;
         }
@@ -133,7 +133,7 @@ class BaseObjectPropertyAccessor implements PropertyExistenceProviderInterface, 
         }
 
         $property_name = $event->getPropertyName();
-        if (self::doseGetterExist($codebase, $fq_classlike_name, $property_name)) {
+        if (self::doesGetterExist($codebase, $fq_classlike_name, $property_name)) {
             $getter = sprintf('%s::get%s', $fq_classlike_name, ucfirst($property_name));
             $type = $codebase->getMethodReturnType($getter, $fq_classlike_name);
             if ($type === null) {
@@ -164,7 +164,7 @@ class BaseObjectPropertyAccessor implements PropertyExistenceProviderInterface, 
     /**
      * Tests to see if a getter function exists on a class.
      */
-    private static function doseGetterExist(Codebase $codebase, string $fq_classlike_name, string $property_name): bool
+    private static function doesGetterExist(Codebase $codebase, string $fq_classlike_name, string $property_name): bool
     {
         $getter = sprintf('%s::get%s', $fq_classlike_name, ucfirst($property_name));
         return $codebase->methodExists($getter);
@@ -173,7 +173,7 @@ class BaseObjectPropertyAccessor implements PropertyExistenceProviderInterface, 
     /**
      * Tests to see if a setter function exists on a class
      */
-    private static function doseSetterExist(Codebase $codebase, string $fq_classlike_name, string $property_name): bool
+    private static function doesSetterExist(Codebase $codebase, string $fq_classlike_name, string $property_name): bool
     {
         $setter = sprintf('%s::set%s', $fq_classlike_name, ucfirst($property_name));
         return $codebase->methodExists($setter);
