@@ -10,6 +10,7 @@ declare(strict_types=1);
 
 namespace Practically\PsalmPluginYii2;
 
+use Practically\PsalmPluginYii2\Handlers\DifferedPluginRegistration;
 use SimpleXMLElement;
 use Psalm\Plugin\PluginEntryPointInterface;
 use Psalm\Plugin\RegistrationInterface;
@@ -42,6 +43,9 @@ class Plugin implements PluginEntryPointInterface
         // configuration values there. They will be provided to your plugin
         // entry point in $config parameter, as a SimpleXmlElement object. If
         // there's no configuration present, null will be passed instead.
+
+        require_once 'Handlers/DifferedPluginRegistration.php';
+        $psalm->registerHooksFromClass(DifferedPluginRegistration::class);
     }
 
     /**
