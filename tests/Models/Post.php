@@ -34,9 +34,19 @@ class Post extends ActiveRecord
      *
      * @return ActiveQuery<User>
      */
-    public function getContributors(): AvtiveQuery
+    public function getContributors(): ActiveQuery
     {
         return $this->hasMany(User::class, ['user_id' => 'user_id']);
+    }
+
+    /**
+     * Gets the user that created this post
+     *
+     * @return CategoryQuery<Category>
+     */
+    public function getCategory(): CategoryQuery
+    {
+        return $this->hasMany(Category::class, ['user_id' => 'user_id']);
     }
 
 }
