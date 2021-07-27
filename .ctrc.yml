@@ -4,6 +4,10 @@
 #  licence that can be found in the LICENCE file or at
 #  https://www.practically.io/copyright/
 
+git:
+  provider: github
+  project: Practically/PsalmPluginYii2
+
 hooks:
   commit-msg:
     - conventional-tools commitlint
