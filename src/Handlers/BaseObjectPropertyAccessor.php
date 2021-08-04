@@ -166,6 +166,17 @@ class BaseObjectPropertyAccessor implements PropertyExistenceProviderInterface, 
             return $type;
         }
 
+        if (self::doesSetterExist($codebase, $fq_classlike_name, $property_name)) {
+            $setter = sprintf('%s::set%s', $fq_classlike_name, ucfirst($property_name));
+            $params = $codebase->getMethodParams($setter);
+            if (count($params) === 0) {
+                return Type::getMixed();
+            }
+
+            $type = $params[0]->signature_type;
+            return ($type === null) ? Type::getMixed() : $type;
+        }
+
         return null;
     }
 

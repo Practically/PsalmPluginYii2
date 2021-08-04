@@ -107,3 +107,31 @@ Feature: BaseObejct::get and BaseObject::set;
       | InvalidReturnType      | The declared return type 'Practically\PsalmPluginYii2\Tests\Models\User' for Practically\PsalmPluginYii2\Tests\Sandbox\test is incorrect, got 'array<array-key, Practically\PsalmPluginYii2\Tests\Models\User>                 |
       | InvalidReturnStatement | The inferred type 'array<array-key, Practically\PsalmPluginYii2\Tests\Models\User>' does not match the declared return type 'Practically\PsalmPluginYii2\Tests\Models\User' for Practically\PsalmPluginYii2\Tests\Sandbox\test |
     And I see no other errors
+  Scenario: You can use prop if only a setter is set
+    Given I have the following code
+      """
+	  function test(Post $post): void
+	  {
+	      $content = $post->content;
+          /** @psalm-trace $content */
+          $post->content = $content . ' Testing';
+      }
+      """
+    When I run Psalm
+    Then I see these errors
+      | Type       | Message          |
+      | Trace      | $content: string |
+    And I see no other errors
+  Scenario: You can use prop if only a setter is set
+    Given I have the following code
+      """
+      function test(Post $post): void
+      {
+          $contentType = $post->contentType;
+          $post->contentType = $contentType . ' Testing';
+      }
+      """
+    When I run Psalm
+    Then I see these errors
+      | MixedAssignment | Unable to determine the type that $contentType is being assigned to |
+      | MixedOperand    | Left operand cannot be mixed                                        |

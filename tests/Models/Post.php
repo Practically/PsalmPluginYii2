@@ -15,6 +15,9 @@ use yii\db\ActiveRecord;
 
 /**
  * A test class that will mock a blog post
+ *
+ * @property string $content
+ * @property string $contentType
  */
 class Post extends ActiveRecord
 {
@@ -47,6 +50,22 @@ class Post extends ActiveRecord
     public function getCategory(): CategoryQuery
     {
         return $this->hasOne(Category::class, ['user_id' => 'user_id']);
+    }
+
+    /**
+     * Trims the content before setting in
+     */
+    public function setContent(string $content): void
+    {
+        $this->content = \trim($content);
+    }
+
+    /**
+     * A setter with no param
+     */
+    public function setContentType(): void
+    {
+        $this->contentType = 'TYPE';
     }
 
 }
