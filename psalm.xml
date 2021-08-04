@@ -10,6 +10,7 @@
     </projectFiles>
 
     <issueHandlers>
-        <LessSpecificReturnType errorLevel="suppress" />
+        <LessSpecificReturnType errorLevel="info" />
+		<MoreSpecificImplementedParamType errorLevel="suppress" />
     </issueHandlers>
 </psalm>
