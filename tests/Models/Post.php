@@ -22,7 +22,7 @@ class Post extends ActiveRecord
     /**
      * Gets the user that created this post
      *
-     * @return ActiveQuery<User>
+     * @return ActiveQuery<User, false>
      */
     public function getCreator(): ActiveQuery
     {
@@ -32,7 +32,7 @@ class Post extends ActiveRecord
     /**
      * Gets the user that created this post
      *
-     * @return ActiveQuery<User>
+     * @return ActiveQuery<User, true>
      */
     public function getContributors(): ActiveQuery
     {
@@ -42,11 +42,11 @@ class Post extends ActiveRecord
     /**
      * Gets the user that created this post
      *
-     * @return CategoryQuery<Category>
+     * @return CategoryQuery<Category, false>
      */
     public function getCategory(): CategoryQuery
     {
-        return $this->hasMany(Category::class, ['user_id' => 'user_id']);
+        return $this->hasOne(Category::class, ['user_id' => 'user_id']);
     }
 
 }

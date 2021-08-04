@@ -12,6 +12,7 @@ namespace yii\db;
 
 /**
  * @template TModel
+ * @template TMultiple
  * @method iterable<mixed, TModel> each(int $batchSize = 100, ?Connection $db = null)
  * @method TModel|null one()
  * @method array<mixed, TModel> all()

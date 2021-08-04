@@ -18,6 +18,7 @@ use Psalm\Plugin\EventHandler\PropertyExistenceProviderInterface;
 use Psalm\Plugin\EventHandler\PropertyTypeProviderInterface;
 use Psalm\Plugin\EventHandler\PropertyVisibilityProviderInterface;
 use Psalm\Type;
+use Psalm\Type\Atomic\TArray;
 use Psalm\Type\Atomic\TGenericObject;
 use Psalm\Type\Union;
 use RuntimeException;
@@ -145,9 +146,16 @@ class BaseObjectPropertyAccessor implements PropertyExistenceProviderInterface, 
                     if ($atomic_type->value === ActiveQuery::class
                      || $codebase->classExtendsOrImplements($atomic_type->value, ActiveQueryInterface::class)
                     ) {
+                        $isArray = false;
+                        if (count($atomic_type->type_params) === 2 && (string)$atomic_type->type_params[1] === 'true') {
+                            $isArray = true;
+                        }
+
                         $type->removeType($atomic_type->getKey());
-                        foreach ($atomic_type->type_params as $param) {
-                            foreach ($param->getAtomicTypes() as $type_to_add) {
+                        if ($isArray) {
+                            $type->addType(new TArray([Type::getArrayKey(), $atomic_type->type_params[0]]));
+                        } else {
+                            foreach ($atomic_type->type_params[0]->getAtomicTypes() as $type_to_add) {
                                 $type->addType($type_to_add);
                             }
                         }
