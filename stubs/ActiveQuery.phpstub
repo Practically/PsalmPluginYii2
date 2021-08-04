@@ -12,13 +12,15 @@ namespace yii\db;
 
 /**
  * @psalm-template TModel
+ * @psalm-template TMultiple
  *
  * @property bool $asArray
+ * @property bool $multiple
  *
  * @method TModel|null one()
  * @method array<mixed, TModel> all()
  *
- * @extends Query<TModel>
+ * @extends Query<TModel, TMultiple>
  */
 class ActiveQuery extends Query
 {

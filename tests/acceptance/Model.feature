@@ -41,7 +41,7 @@ Feature: Model::class;
 		*/
         class Post extends ActiveRecord
         {
-            /** * @return ActiveQuery<User> */
+            /** * @return ActiveQuery<User, false> */
             public function getCreator(): ActiveQuery
             {
                 return $this->hasOne(User::class, ['user_id' => 'user_id']);

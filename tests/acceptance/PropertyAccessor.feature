@@ -63,3 +63,47 @@ Feature: BaseObejct::get and BaseObject::set;
       """
     When I run Psalm
     Then I see no errors
+  Scenario: You can get a has many relation
+    Given I have the following code
+      """
+	  /** @psalm-return array<array-key, User> */
+	  function test(Post $post): array
+	  {
+	      return $post->contributors;
+	  }
+      """
+    When I run Psalm
+    Then I see no errors
+  Scenario: You can use has many in a loop
+    Given I have the following code
+      """
+	  function test(Post $post): ?User
+	  {
+		  foreach ($post->contributors as $key => $value) {
+		      /** @psalm-trace $key */
+		      return $value;
+          }
+
+          return null;
+	  }
+      """
+    When I run Psalm
+    Then I see these errors
+      | Type       | Message		                                       |
+	  | UnusedVariable | $key is never referenced or the value is not used |
+      | Trace      | $key: array-key                                       |
+    And I see no other errors
+  Scenario: Wrong return type is picked up correctly
+    Given I have the following code
+      """
+	  function test(Post $post): User
+	  {
+	      return $post->contributors;
+	  }
+      """
+    When I run Psalm
+    Then I see these errors
+      | Type                   | Message																																																				        |
+      | InvalidReturnType      | The declared return type 'Practically\PsalmPluginYii2\Tests\Models\User' for Practically\PsalmPluginYii2\Tests\Sandbox\test is incorrect, got 'array<array-key, Practically\PsalmPluginYii2\Tests\Models\User>                 |
+      | InvalidReturnStatement | The inferred type 'array<array-key, Practically\PsalmPluginYii2\Tests\Models\User>' does not match the declared return type 'Practically\PsalmPluginYii2\Tests\Models\User' for Practically\PsalmPluginYii2\Tests\Sandbox\test |
+    And I see no other errors
