@@ -18,6 +18,8 @@ use yii\db\ActiveRecord;
  *
  * @property string $content
  * @property string $contentType
+ * @property string $status
+ * @property string $created_at
  */
 class Post extends ActiveRecord
 {
