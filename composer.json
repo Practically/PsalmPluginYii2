@@ -1,6 +1,8 @@
 {
     "name": "practically/psalm-plugin-yii2",
-    "description": "Psalm plugin for a better typed yii2 application",
+    "description": "Psalm plugin for a better typed Yii2 application",
+    "keywords": ["psalm", "plugin", "yii2"],
+    "license": "MIT",
     "type": "psalm-plugin",
     "authors": [
         {
@@ -10,10 +12,10 @@
     ],
     "require": {
         "php": ">=7.1",
-        "vimeo/psalm": "^4.8",
         "yiisoft/yii2": "^2.0"
     },
     "require-dev": {
+        "vimeo/psalm": "^4.8",
         "squizlabs/php_codesniffer": "^3.6",
         "weirdan/codeception-psalm-module": "^0.13.1",
         "codeception/codeception": "^4.1"
@@ -25,24 +27,19 @@
     },
     "autoload": {
         "psr-4": {
-            "Practically\\PsalmPluginYii2\\": "src"
+            "Practically\\PsalmPluginYii2\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
             "Practically\\PsalmPluginYii2\\Tests\\": [
-                "tests/_support",
-                "tests"
+                "tests/_support/",
+                "tests/"
             ]
         }
     },
-    "repositories": [
-        {
-            "type": "composer",
-            "url": "https://asset-packagist.org"
-        }
-    ],
     "scripts": {
+        "post-install-cmd": "psalm-plugin enable practically/psalm-plugin-yii2",
         "test": "codecept build && codecept run",
         "psalm": "psalm",
         "cs:check": "phpcs --standard=./ruleset.xml --ignore='tests/_run' -s src tests",
