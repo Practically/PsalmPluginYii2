@@ -39,7 +39,6 @@
         }
     },
     "scripts": {
-        "post-install-cmd": "psalm-plugin enable practically/psalm-plugin-yii2",
         "test": "codecept build && codecept run",
         "psalm": "psalm",
         "cs:check": "phpcs --standard=./ruleset.xml --ignore='tests/_run' -s src tests",
