@@ -5,7 +5,8 @@
 The preferred method is with composer.
 
 ```bash
-composer require practically/psalm-plugin-yii2
+composer --dev require practically/psalm-plugin-yii2 1.x-dev
+psalm-plugin enable practically/psalm-plugin-yii2
 ```
 
 ## Contributing
