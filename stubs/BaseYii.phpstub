@@ -13,10 +13,131 @@ namespace yii;
 class BaseYii
 {
     /**
+     * @var array
+     */
+    public static $classMap = [];
+    /**
+     * @var base\Application
+     */
+    public static $app;
+    /**
+     * @var string[]
+     */
+    public static $aliases = [];
+    /**
+     * @var di\Container
+     */
+    public static $container;
+
+    /**
+     * @return string
+     */
+    public static function getVersion() {}
+    /**
+     * @param string $alias
+     * @param bool $throwException
+     * @return string|false
+     * @throws base\InvalidArgumentException
+     */
+    public static function getAlias($alias, $throwException = true) {}
+    /**
+     * @param string $alias
+     * @return string|false
+     */
+    public static function getRootAlias($alias) {}
+    /**
+     * @param string $alias
+     * @param string $path
+     * @return void
+     * @throws base\InvalidArgumentException
+     */
+    public static function setAlias($alias, $path) {}
+    /**
+     * @param class-string $className
+     * @return void
+     * @throws base\UnknownClassException
+     */
+    public static function autoload($className) {}
+    /**
      * @template T
      * @param class-string<T>|array{class: class-string<T>}|callable(): T $type
      * @param array<mixed> $params
      * @return T
+     * @throws base\InvalidConfigException
      */
-    public static function createObject($type, array $params = []);
+    public static function createObject($type, array $params = []) {}
+    /**
+     * @return log\Logger
+     */
+    public static function getLogger() {}
+    /**
+     * @param log\Logger $logger
+     * @return void
+     */
+    public static function setLogger($logger) {}
+    /**
+     * @param array|string $message
+     * @param string $category
+     * @return void
+     */
+    public static function debug($message, $category = 'application') {}
+    /**
+     * @param array|string $message
+     * @param string $category
+     * @return void
+     */
+    public static function trace($message, $category = 'application') {}
+    /**
+     * @param array|string $message
+     * @param string $category
+     * @return void
+     */
+    public static function error($message, $category = 'application') {}
+    /**
+     * @param array|string $message
+     * @param string $category
+     */
+    public static function warning($message, $category = 'application') {}
+    /**
+     * @param array|string $message
+     * @param string $category
+     * @return void
+     */
+    public static function info($message, $category = 'application') {}
+    /**
+     * @param string $token
+     * @param string $category
+     * @return void
+     */
+    public static function beginProfile($token, $category = 'application') {}
+    /**
+     * @param string $token
+     * @param string $category
+     * @return void
+     */
+    public static function endProfile($token, $category = 'application') {}
+    /**
+     * @return string
+     * @deprecated 2.0.14
+     */
+    public static function powered() {}
+    /**
+     * @param string $category
+     * @param string $message
+     * @param array $params
+     * @param string|null $language
+     * @return string
+     */
+    public static function t($category, $message, $params = [], $language = null) {}
+    /**
+     * @param object $object
+     * @param array $properties
+     * @return object
+     */
+    public static function configure($object, $properties) {}
+    /**
+     * @param object $object
+     * @return array
+     */
+    public static function getObjectVars($object) {}
 }
