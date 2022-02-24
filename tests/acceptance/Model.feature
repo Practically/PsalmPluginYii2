@@ -13,7 +13,7 @@ Feature: Model::class;
     Given I have the following config
       """
       <?xml version="1.0"?>
-      <psalm totallyTyped="false">
+      <psalm errorLevel="2">
         <projectFiles>
           <directory name="."/>
         </projectFiles>
