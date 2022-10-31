@@ -28,6 +28,11 @@
             "Practically\\PsalmPluginYii2\\": "src"
         }
     },
+    "config": {
+        "allow-plugins": {
+            "yiisoft/yii2-composer": true
+        }
+    },
     "autoload-dev": {
         "psr-4": {
             "Practically\\PsalmPluginYii2\\Tests\\": [
