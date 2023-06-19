@@ -10,6 +10,8 @@ declare(strict_types=1);
 
 namespace yii\db;
 
+use yii\base\Component;
+
 /**
  * @template TModel
  * @template TMultiple
@@ -17,4 +19,5 @@ namespace yii\db;
  * @method TModel|null one()
  * @method array<mixed, TModel> all()
  */
-class Query {}
+class Query extends Component implements QueryInterface, ExpressionInterface
+{}
