@@ -28,12 +28,17 @@ Feature: Query::class;
       declare(strict_types=1);
 
       namespace Practically\PsalmPluginYii2\Tests\Sandbox;
-	  
+
 	  use yii\db\ActiveQuery;
       """
   Scenario: You can create a instance of a model and its typed
     Given I have the following code
       """
+        /**
+         * @template TModel
+         * @template TMultiple
+         * @extends ActiveQuery<TModel, TMultiple>
+         */
         class MyQuery extends ActiveQuery
         {
 			public function active(): self

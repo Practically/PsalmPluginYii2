@@ -141,7 +141,8 @@ class BaseObjectPropertyAccessor implements PropertyExistenceProviderInterface, 
                 return Type::getMixed();
             }
 
-            foreach ($type->getAtomicTypes() as $atomic_type) {
+            $mutableType = method_exists($type, 'getBuilder') ? $type->getBuilder() : $type;
+            foreach ($mutableType->getAtomicTypes() as $atomic_type) {
                 if ($atomic_type instanceof TGenericObject) {
                     if ($atomic_type->value === ActiveQuery::class
                      || $codebase->classExtendsOrImplements($atomic_type->value, ActiveQueryInterface::class)
@@ -151,19 +152,19 @@ class BaseObjectPropertyAccessor implements PropertyExistenceProviderInterface, 
                             $isArray = true;
                         }
 
-                        $type->removeType($atomic_type->getKey());
+                        $mutableType->removeType($atomic_type->getKey());
                         if ($isArray) {
-                            $type->addType(new TArray([Type::getArrayKey(), $atomic_type->type_params[0]]));
+                            $mutableType->addType(new TArray([Type::getArrayKey(), $atomic_type->type_params[0]]));
                         } else {
                             foreach ($atomic_type->type_params[0]->getAtomicTypes() as $type_to_add) {
-                                $type->addType($type_to_add);
+                                $mutableType->addType($type_to_add);
                             }
                         }
                     }
                 }
             }
 
-            return $type;
+            return method_exists($mutableType, 'freeze') ? $mutableType->freeze() : $mutableType;
         }
 
         if (self::doesSetterExist($codebase, $fq_classlike_name, $property_name)) {
