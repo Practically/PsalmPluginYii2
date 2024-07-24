@@ -1,5 +1,9 @@
 # Psalm plugin Yii2
 
+## ⚠️ No longer maintained
+
+We've found Yii2 works quite nicely with Psalm now, so we've made the decision to archive this repository.
+
 ## Installation
 
 The preferred method is with composer.
