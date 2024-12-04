@@ -13,8 +13,8 @@ namespace yii\db;
 /**
  * @psalm-template TModel
  *
- * @method TModel|null one()
- * @method array<mixed, TModel> all()
+ * @method TModel|null one($db = null)
+ * @method array<mixed, TModel> all($db = null)
  *
  * @extends QueryInterface<TModel>
  */
