@@ -16,7 +16,7 @@
     "require-dev": {
         "squizlabs/php_codesniffer": "^3.6",
         "weirdan/codeception-psalm-module": "^0.13.1",
-        "codeception/codeception": "^4.1"
+        "codeception/codeception": "^5.1"
     },
     "extra": {
         "psalm": {
