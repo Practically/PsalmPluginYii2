@@ -10,7 +10,9 @@ declare(strict_types=1);
 
 namespace yii\db;
 
-class BaseActiveRecord
+use yii\base\Model;
+
+class BaseActiveRecord extends Model implements ActiveRecordInterface
 {
     /**
      * @template T
